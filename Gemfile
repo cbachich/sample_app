@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.3'
 
-group :assets do
+group :development do
   gem 'sqlite3', '1.3.5'
   gem 'rspec-rails', '2.9.0'
 end
