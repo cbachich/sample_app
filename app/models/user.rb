@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
   has_secure_password
 
   before_save { self.email.downcase! }
+  before_save :create_remember_token
 
   # Validate that a name is not blank and is no longer than50 characters
   validates :name, presence: true, length: { maximum: 50 }
@@ -28,4 +29,13 @@ class User < ActiveRecord::Base
   #Validate the password is there and is at least 6 characters
   validates :password, length: { minimum: 6 }, on: :create
   validates :password_confirmation, presence: true, on: :create
+
+  # Everything below this private is only visibile to this user model
+  private
+
+    # Creates a remember token for the user (not a local variable)
+    # Used to keep a user login active indefinitely after sign in
+    def create_remember_token
+      self.remember_token = SecureRandom.urlsafe_base64
+    end
 end
