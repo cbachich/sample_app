@@ -27,8 +27,8 @@ class User < ActiveRecord::Base
                     uniqueness: { case_sensitive: false } 
   
   #Validate the password is there and is at least 6 characters
-  validates :password, length: { minimum: 6 }, on: :create
-  validates :password_confirmation, presence: true, on: :create
+  validates :password, length: { minimum: 6 } 
+  validates :password_confirmation, presence: true
 
   # Everything below this private is only visibile to this user model
   private
