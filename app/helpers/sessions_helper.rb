@@ -19,6 +19,13 @@ module SessionsHelper
     @current_user = user
   end
 
+  def signed_in_user
+    unless signed_in?
+      store_location
+      redirect_to signin_path, notice: "Please sign in."
+    end
+  end
+
   # Uses the ||= to look in the database for the remember token if current user
   # is empty. If it's not empty, it doesn't do the search
   def current_user
