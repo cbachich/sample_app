@@ -31,6 +31,10 @@ class User < ActiveRecord::Base
   validates :password, length: { minimum: 6 } 
   validates :password_confirmation, presence: true
 
+  def feed
+    Micropost.where("user_id= ?", id)
+  end
+
   # Everything below this private is only visibile to this user model
   private
 
