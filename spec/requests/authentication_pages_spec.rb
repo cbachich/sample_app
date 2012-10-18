@@ -69,7 +69,6 @@ describe "Authentication" do
         end
       end
 
-
       describe "in the Users controller" do
 
         describe "visiting the edit page" do
@@ -113,7 +112,18 @@ describe "Authentication" do
           specify { response.should redirect_to(signin_path) }
         end
       end
-    end
+
+      describe "in the Relationships controller" do
+        describe "submitting to the create action" do
+          before { post relationships_path }
+          specify { response.should redirect_to(signin_path) }
+        end
+
+        describe "submitting to the destroy action" do
+          before { delete relationship_path(1) }
+          specify { response.should redirect_to(signin_path) }
+        end
+      end    end
 
     describe "as wrong user" do
       let(:user) {       FactoryGirl.create(:user) }
